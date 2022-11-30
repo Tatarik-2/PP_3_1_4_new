@@ -1,16 +1,13 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.hibernate.validator.constraints.UniqueElements;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -48,7 +45,7 @@ public class User implements UserDetails {
         return this;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -157,5 +154,14 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, email, age, username, password, roles);
+    }
+
+    public User(String name, String email, int age, String username, String password, List<Role> roles) {
+        this.name = name;
+        this.email = email;
+        this.age = age;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
     }
 }
